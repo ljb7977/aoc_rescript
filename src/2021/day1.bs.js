@@ -13,32 +13,22 @@ function read_from_file(filename) {
 
 var lines = read_from_file("input.txt");
 
-var numbers = lines.map(Belt_Int.fromString);
+var numbers = Belt_Array.map(Belt_Array.map(lines, Belt_Int.fromString), Belt_Option.getExn);
 
-var numbers$1 = numbers.map(Belt_Option.getExn);
+var numbers1 = Belt_Array.sliceToEnd(numbers, 1);
 
-var numbers1 = Belt_Array.sliceToEnd(numbers$1, 1);
+var numbers2 = Belt_Array.slice(numbers, 0, numbers.length - 1 | 0);
 
-var numbers2 = Belt_Array.slice(numbers$1, 0, numbers$1.length - 1 | 0);
+var count = Belt_Array.keep(Belt_Array.zip(numbers1, numbers2), (function (param) {
+        return (param[0] - param[1] | 0) > 0;
+      })).length;
 
-var pairs = Belt_Array.zip(numbers1, numbers2);
-
-var diffs = pairs.map(function (param) {
-      return (param[0] - param[1] | 0) > 0;
-    });
-
-var counts = diffs.filter(function (v) {
-      return v;
-    });
-
-console.log(counts.length);
+console.log(count);
 
 exports.read_from_file = read_from_file;
 exports.lines = lines;
-exports.numbers = numbers$1;
+exports.numbers = numbers;
 exports.numbers1 = numbers1;
 exports.numbers2 = numbers2;
-exports.pairs = pairs;
-exports.diffs = diffs;
-exports.counts = counts;
+exports.count = count;
 /* lines Not a pure module */
