@@ -7,11 +7,10 @@ var Belt_Array = require("rescript/lib/js/belt_Array.js");
 var Belt_Option = require("rescript/lib/js/belt_Option.js");
 
 function read_from_file(filename) {
-  var input = Fs.readFileSync(filename, "utf8");
-  return input.split("\n");
+  return Fs.readFileSync(filename, "utf8").split("\n");
 }
 
-var lines = read_from_file("input.txt");
+var lines = Fs.readFileSync("input.txt", "utf8").split("\n");
 
 var numbers = Belt_Array.map(Belt_Array.map(lines, Belt_Int.fromString), Belt_Option.getExn);
 

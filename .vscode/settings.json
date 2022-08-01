@@ -1,0 +1,9 @@
+{
+    "editor.formatOnSave": true,
+    "rescript.settings.autoRunCodeAnalysis": true,
+    "rescript.settings.codeLens": true,
+    "rescript.settings.inlayHints.enable": true,
+    "[rescript]": {
+        "editor.defaultFormatter": "chenglou92.rescript-vscode"
+    },
+}
