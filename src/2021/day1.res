@@ -7,7 +7,8 @@ let solution = arr => {
   Belt.Array.zip(arr1, arr2)->Belt.Array.keep(((v1, v2)) => {v1 - v2 > 0})->Belt.Array.length
 }
 
-let lines = read_from_file("input.txt")
+// Part 1
+let lines = read_from_file("day1_input.txt")
 let numbers = lines->Belt.Array.map(Belt.Int.fromString)->Belt.Array.map(Belt.Option.getExn)
 let count = solution(numbers)
 Js.log(count)

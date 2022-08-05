@@ -19,7 +19,7 @@ function solution(arr) {
               })).length;
 }
 
-var lines = Fs.readFileSync("input.txt", "utf8").split("\n");
+var lines = Fs.readFileSync("day1_input.txt", "utf8").split("\n");
 
 var numbers = Belt_Array.map(Belt_Array.map(lines, Belt_Int.fromString), Belt_Option.getExn);
 
