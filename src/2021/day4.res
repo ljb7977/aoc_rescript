@@ -91,20 +91,20 @@ let check_board = (board: array<array<cell>>) => {
   }
 }
 
+exception No_Bingos
+exception Too_Many_Answers
+
 let rec step = (draws, boards) => {
   switch draws {
-  | [] => None
+  | [] => raise(No_Bingos)
   | draws => {
       let draw = draws[0]
       let new_boards = boards->Belt.Array.map(board => mark_board(board, draw))
       let check_result = new_boards->Belt.Array.keepMap(check_board)
       switch check_result {
       | [] => step(Belt.Array.sliceToEnd(draws, 1), new_boards)
-      | [answer] => {
-          Js.log(answer)
-          Js.log(draw)
-          Some(answer * draw)
-        }
+      | [answer] => answer * draw
+      | _ => raise(Too_Many_Answers)
       }
     }
   }
