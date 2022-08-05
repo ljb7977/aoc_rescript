@@ -65,13 +65,11 @@ let check_board = (board: array<array<cell>>) => {
       board[i][j]
     })
   })
-  // ->Belt.Array.concatMany
   let vertical = Belt.Array.makeBy(5, j => j)->Belt.Array.map(j => {
     Belt.Array.makeBy(5, i => i)->Belt.Array.map(i => {
       board[i][j]
     })
   })
-  // ->Belt.Array.concatMany
   let diagonal1 = Belt.Array.makeBy(5, i => i)->Belt.Array.map(i => {
     board[i][i]
   })
